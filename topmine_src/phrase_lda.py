@@ -244,7 +244,7 @@ class PhraseLDA(object):
                 if len(phrase.split(" ")) > 1:
                     val = utils._get_string_phrase(phrase, self.index_vocab), count
                     output_for_topic.append(val)
-                    print val
+                    print val[0], val[1]
             output.append(output_for_topic)
             topic_index += 1
         return output

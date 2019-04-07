@@ -15,3 +15,4 @@ print get_output_of(phrase_mining_cmd)
 
 phrase_lda_cmd = "pypy topmine_src/run_phrase_lda.py {0}".format(num_topics)
 print get_output_of(phrase_lda_cmd)
+#import code; code.interact(local=dict(globals(), **locals()))

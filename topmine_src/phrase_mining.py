@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 from __future__ import division
+import codecs
 import re
 from collections import Counter
 import math
@@ -88,7 +90,7 @@ class PhraseMining(object):
             n += 1
             if n == max_phrase_size:
                 break
-        
+        #import code; code.interact(local=dict(globals(), **locals()))
         hash_counter = Counter(x for x in hash_counter.elements() if hash_counter[x] >= min_support)
         
         return hash_counter 
@@ -171,14 +173,13 @@ class PhraseMining(object):
             substr2 = " ".join(val[1:])
             true_counter[substr1] -= hash_counter[key]
             true_counter[substr2] -= hash_counter[key]
-
         return true_counter
 
     def _get_stopwords(self):
         """
         Returns a list of stopwords.
         """
-        f = open("topmine_src/stopwords.txt")
+        f = codecs.open("topmine_src/stopwords.txt", encoding="utf-8")
         stopwords = set()
         for line in f:
             stopwords.add(line.rstrip())
@@ -241,7 +242,7 @@ class PhraseMining(object):
         """
         Performs preprocessing on the input document. Includes stopword removal.
         """
-        f = open(filename, 'r')
+        f = codecs.open(filename, 'r', encoding="utf-8")
         documents = []
         document_range = []
         i = 0
@@ -251,7 +252,7 @@ class PhraseMining(object):
             sentences_no_punc = re.split(r"[.,;!?]",line_lowercase)
             stripped_sentences = []
             for sentence in sentences_no_punc:
-                stripped_sentences.append(re.sub('[^A-Za-z0-9]+', ' ', sentence))
+                stripped_sentences.append(re.sub(u'[^A-Za-z0-9а-яА-ЯёЁ]+', ' ', sentence))
             sentences_no_punc = stripped_sentences
             i += len(sentences_no_punc)
             document_range.append(i)

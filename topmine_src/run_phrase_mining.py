@@ -8,7 +8,7 @@ print 'Running Phrase Mining...'
 file_name = arguments[1]
 
 # represents the minimum number of occurences you want each phrase to have.
-min_support=10 
+min_support=4 
 
 # represents the threshold for merging two words into a phrase. A lower value
 # alpha leads to higher recall and lower precision,
